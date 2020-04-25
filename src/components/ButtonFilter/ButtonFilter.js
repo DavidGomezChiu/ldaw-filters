@@ -4,6 +4,7 @@ import './ButtonFilter.scss';
 const ButtonFilter = () => {
     return (
         <div>
+            <h3>ButtonFilter</h3>
         </div>
     );
 }

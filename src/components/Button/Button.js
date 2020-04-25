@@ -4,6 +4,7 @@ import './Button.scss';
 const Button = () => {
     return (
         <div>
+            <h3>Button</h3>
         </div>
     );
 }
