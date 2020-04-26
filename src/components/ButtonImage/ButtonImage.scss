@@ -1,0 +1,18 @@
+@import '../../theme/variables/variables.scss';
+
+.button-image{
+    text-align: center;
+    border: 1px solid $main-purple;
+    display: inline-block;
+    .vertical-align{
+        vertical-align: middle;
+        .button-label{
+            text-transform: uppercase;
+            margin: 0;
+        }
+    }
+}
+
+.button-image:hover{
+    background-color: $main-purple-hover;
+}
