@@ -42,17 +42,62 @@ const Filters = () => {
         {source:"Corte/regular.png", label:"Regular (poco brillante)"}
     ]);
 
+    const handleOnSubmit = () => {
+        console.log('submit');
+    };
+
+    const handleOnClean = () => {
+        console.log('clean!');
+    };
+
     return (
         <div>
-            <h2>Filtros</h2>
-            <ButtonFilter title="Forma" buttons={shapeButtons}></ButtonFilter>
-            <ButtonFilter title="Color" buttons={colorButtons}></ButtonFilter>
-            <ButtonFilter title="Claridad" buttons={claridadButtons}></ButtonFilter>
-            <ButtonFilter title="Corte" buttons={corteButtons}></ButtonFilter>
-            <RangeFilter></RangeFilter>
-            <RangeFilter></RangeFilter>
-            <Button></Button>
-            <Button></Button>
+            <div className="container">
+                <div className="row">
+                    <div className="col-6">
+                        <div className="row">
+                            <div className="col">
+                                <ButtonFilter title="Forma" buttons={shapeButtons}></ButtonFilter>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <ButtonFilter title="Color" buttons={colorButtons}></ButtonFilter>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <ButtonFilter title="Claridad" buttons={claridadButtons}></ButtonFilter>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="row">
+                            <div className="col">
+                                <ButtonFilter title="Corte" buttons={corteButtons}></ButtonFilter>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <RangeFilter title="Quilataje" tooltip="" from="0" to="30" imageFrom="Quilataje/pequeno.png" imageTo="Quilataje/grande.png"></RangeFilter>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <RangeFilter title="Precio" tooltip="" from="200" to="5000" imageFrom="" imageTo=""></RangeFilter>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col text-right">
+                        <Button label="Buscar" action={handleOnSubmit} color="primary"></Button>
+                    </div>
+                    <div className="col text-left">
+                        <Button label="Limpiar filtros" action={handleOnClean} color="secondary"></Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

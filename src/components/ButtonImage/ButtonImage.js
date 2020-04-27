@@ -7,7 +7,7 @@ const ButtonImage = ({ source, label }) => {
     return (
         <div className="button-image px-4 py-1">
             <div className="vertical-align">
-                <img alt={label? label : 'No data'} src={process.env.PUBLIC_URL+'/assets/img/'+source}></img>
+                <img className="button-img" alt={label? label : 'No data'} src={process.env.PUBLIC_URL+'/assets/img/'+source}></img>
                 <p className="button-label">{label? label : 'No data'}</p>
             </div>
         </div>

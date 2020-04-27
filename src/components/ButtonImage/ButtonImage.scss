@@ -6,6 +6,9 @@
     display: inline-block;
     .vertical-align{
         vertical-align: middle;
+        .button-img{
+            min-height: 40px;
+        }
         .button-label{
             text-transform: uppercase;
             margin: 0;
