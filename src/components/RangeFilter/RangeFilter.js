@@ -4,12 +4,11 @@ import './RangeFilter.scss';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
-const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo}) => {
+const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step}) => {
     const [range, setRange] = useState({min: 0, max: 20})
     const [value, setValue] = useState({min: 0, max: 20})
 
     useEffect(() => {
-        console.log('useEffect');
         if(from && from !== '' && to && to !== ''){
             let newMin = parseInt(from);
             let newMax = parseInt(to);
@@ -23,18 +22,17 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo}) => {
     },[]);
 
     const handleChange = (newValue) => {
-        console.log(newValue);
         if(newValue.value){
             setValue(newValue.value);
         }else{
             setValue(newValue);
         }
+        change({title,value})
     }
 
     const setMin = (received) => {
-        console.log(received);
         if(received !== ''){
-            let newMin =  parseInt(received);
+            let newMin =  parseFloat(received);
             if(newMin < range.min){
                 newMin = range.min;
             }
@@ -46,9 +44,8 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo}) => {
     }
     
     const setMax = (received) => {
-        console.log(received);
         if(received !== ''){
-            let newMax = parseInt(received);
+            let newMax = parseFloat(received);
             if(newMax > range.max){
                 newMax = range.max
             }
@@ -83,7 +80,7 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo}) => {
                 </div>
                 <div className="row my-2">
                     <div className="col">
-                        <InputRange formatLabel={value => ''} onChange={handleChange} step={1} maxValue={range.max} minValue={range.min} value={value}></InputRange>
+                        <InputRange formatLabel={value => ''} onChange={handleChange} step={step} maxValue={range.max} minValue={range.min} value={value}></InputRange>
                     </div>
                 </div>
                 <div className="row">

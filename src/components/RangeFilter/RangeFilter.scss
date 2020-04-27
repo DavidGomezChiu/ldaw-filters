@@ -1,3 +1,5 @@
+@import '../../theme/variables/variables.scss';
+
 .container{
     min-width: 100%;
     padding: 0px !important;
@@ -5,4 +7,8 @@
 }
 .image-container{
     margin-top: auto;
+}
+.range-inputs{
+    width: 50px;
+    border: 1px solid $main-purple;
 }
