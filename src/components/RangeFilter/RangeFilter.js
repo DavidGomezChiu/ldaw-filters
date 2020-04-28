@@ -4,9 +4,10 @@ import './RangeFilter.scss';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
-const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step}) => {
+const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step, needsCleaning, onClean}) => {
     const [range, setRange] = useState({min: 0, max: 20})
     const [value, setValue] = useState({min: 0, max: 20})
+    let [clean, setClean] = useState(false);
 
     useEffect(() => {
         if(from && from !== '' && to && to !== ''){
@@ -20,6 +21,22 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step
             handleChange({value: {min: newMin, max: newMax}});
         }
     },[]);
+
+    useEffect(() => {
+        console.log('clean '+title);
+        if(needsCleaning !== undefined){
+            setClean(!needsCleaning);
+            if(needsCleaning){
+                handleClean();
+            }
+        }
+    },[needsCleaning]);
+
+    const handleClean = () => {
+        setValue({min: range.min, max: range.max});
+        setClean(false)
+        onClean(title)
+    };
 
     const handleChange = (newValue) => {
         if(newValue.value){

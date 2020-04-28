@@ -3,16 +3,32 @@ import './ButtonFilter.scss';
 
 import ButtonImage from '../ButtonImage/ButtonImage'
 
-const ButtonFilter = ({title, buttons, tooltip, change}) => {
+const ButtonFilter = ({title, buttons, tooltip, change, needsCleaning, onClean}) => {
     let [buttonList, setButtonList] = useState([]);
     let [clicked, setClicked] = useState('');
-    // <ButtonImage key="1" source="imperfecciones-10x.png" label="prueba"></ButtonImage>
+    let [clean, setClean] = useState(false);
+
     useEffect(() => {
-        console.log('useEffect');
         if(buttons !== undefined){
             setButtonList(buttons);
         }
     },[]);
+
+    useEffect(() => {
+        console.log('clean '+title);
+        if(needsCleaning !== undefined){
+            setClean(!needsCleaning);
+            if(needsCleaning){
+                handleClean();
+            }
+        }
+    },[needsCleaning]);
+
+    const handleClean = () => {
+        setClicked('')
+        setClean(false)
+        onClean(title)
+    };
 
     const handleClick = (clicked) => {
         setClicked(clicked)

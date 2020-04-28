@@ -45,12 +45,16 @@ const Filters = () => {
     let [filter, setFilter] = useState({});
 
     let [shapeButtons, setShapeButtons] = useState(initialForma);
-    
     let [colorButtons, setColorButtons] = useState(initialColor);
-    
     let [claridadButtons, setClaridadButtons] = useState(initialClaridad);
-    
     let [corteButtons, setCorteButtons] = useState(initialCorte);
+
+    let [shapeNeedsCleaning, setShapeNeedsCleaning] = useState(false);
+    let [colorNeedsCleaning, setColorNeedsCleaning] = useState(false);
+    let [claridadNeedsCleaning, setClaridadNeedsCleaning] = useState(false);
+    let [corteNeedsCleaning, setCorteNeedsCleaning] = useState(false);
+    let [quilatajeNeedsCleaning, setQuilatajeNeedsCleaning] = useState(false);
+    let [precioNeedsCleaning, setPrecioNeedsCleaning] = useState(false);
 
     const handleOnSubmit = () => {
         console.log('Getting:');
@@ -65,7 +69,39 @@ const Filters = () => {
         setClaridadButtons(initialClaridad);
         setCorteButtons(initialCorte);
         setFilter({});
+        
+        setShapeNeedsCleaning(true)
+        setColorNeedsCleaning(true)
+        setClaridadNeedsCleaning(true)
+        setCorteNeedsCleaning(true)
+        setQuilatajeNeedsCleaning(true)
+        setPrecioNeedsCleaning(true)
     };
+
+    const handleHasBeenCleaned = (title) => {
+        switch(title){
+            case 'Forma':
+                setShapeNeedsCleaning(false);
+                break;
+            case 'Color':
+                setColorNeedsCleaning(false);
+                break;
+            case 'Claridad':
+                setClaridadNeedsCleaning(false);
+                break;
+            case 'Corte':
+                setCorteNeedsCleaning(false)
+                break;
+            case 'Quilataje':
+                setQuilatajeNeedsCleaning(false)
+                break;
+            case 'Precio':
+                setPrecioNeedsCleaning(false)
+                break;
+            default:
+                break;
+        }
+    }
 
     const handleOnChange = (change) => {
         let newFilter = Object.assign({},filter);
@@ -80,34 +116,34 @@ const Filters = () => {
                     <div className="col-6">
                         <div className="row">
                             <div className="col">
-                                <ButtonFilter change={handleOnChange} title="Forma" buttons={shapeButtons}></ButtonFilter>
+                                <ButtonFilter needsCleaning={shapeNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Forma" buttons={shapeButtons}></ButtonFilter>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <ButtonFilter change={handleOnChange} title="Color" buttons={colorButtons}></ButtonFilter>
+                                <ButtonFilter needsCleaning={colorNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Color" buttons={colorButtons}></ButtonFilter>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <ButtonFilter change={handleOnChange} title="Claridad" buttons={claridadButtons}></ButtonFilter>
+                                <ButtonFilter needsCleaning={claridadNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Claridad" buttons={claridadButtons}></ButtonFilter>
                             </div>
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="row">
                             <div className="col">
-                                <ButtonFilter change={handleOnChange} title="Corte" buttons={corteButtons}></ButtonFilter>
+                                <ButtonFilter needsCleaning={corteNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Corte" buttons={corteButtons}></ButtonFilter>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <RangeFilter change={handleOnChange} title="Quilataje" tooltip="" from="0" to="30" step={0.01} imageFrom="Quilataje/pequeno.png" imageTo="Quilataje/grande.png"></RangeFilter>
+                                <RangeFilter needsCleaning={quilatajeNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Quilataje" tooltip="" from="0" to="30" step={0.01} imageFrom="Quilataje/pequeno.png" imageTo="Quilataje/grande.png"></RangeFilter>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <RangeFilter change={handleOnChange} title="Precio" tooltip="" from="200" to="5000" step={1} imageFrom="" imageTo=""></RangeFilter>
+                                <RangeFilter needsCleaning={precioNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Precio" tooltip="" from="200" to="5000" step={1} imageFrom="" imageTo=""></RangeFilter>
                             </div>
                         </div>
                     </div>
