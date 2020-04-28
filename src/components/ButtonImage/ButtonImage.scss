@@ -3,8 +3,9 @@
 .button-image{
     text-align: center;
     border: 1px solid $main-purple;
-    display: inline-block;
+    float: left;
     .vertical-align{
+        margin: auto;
         vertical-align: middle;
         .button-img{
             min-height: 40px;

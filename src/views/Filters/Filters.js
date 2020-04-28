@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Filters.scss'
 
 import ButtonFilter from '../../components/ButtonFilter/ButtonFilter'
@@ -61,6 +61,15 @@ const Filters = () => {
         console.log(filter);
     };
 
+    useEffect(() => {
+        setShapeNeedsCleaning(true)
+        setColorNeedsCleaning(true)
+        setClaridadNeedsCleaning(true)
+        setCorteNeedsCleaning(true)
+        setQuilatajeNeedsCleaning(true)
+        setPrecioNeedsCleaning(true)
+    },[]);
+
     const handleOnClean = () => {
         console.log('Filters cleaned!');
         // Intento de resetear filtros
@@ -113,7 +122,7 @@ const Filters = () => {
         <div>
             <div className="container">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6 columns">
                         <div className="row">
                             <div className="col">
                                 <ButtonFilter needsCleaning={shapeNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Forma" buttons={shapeButtons}></ButtonFilter>
@@ -130,7 +139,7 @@ const Filters = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-6 columns">
                         <div className="row">
                             <div className="col">
                                 <ButtonFilter needsCleaning={corteNeedsCleaning} onClean={handleHasBeenCleaned} change={handleOnChange} title="Corte" buttons={corteButtons}></ButtonFilter>
