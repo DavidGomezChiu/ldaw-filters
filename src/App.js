@@ -5,8 +5,7 @@ import Filters from './views/Filters/Filters'
 
 function App() {
   return (
-    <div className="px-5">
-      <h1>Sitio de filtros</h1>
+    <div className="p-5">
       <Filters></Filters>
     </div>
   );
