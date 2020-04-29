@@ -50,7 +50,7 @@ const ButtonFilter = ({title, buttons, tooltip, change, needsCleaning, onClean})
             <div className="container mb-3 mt-2">
                 <div className="row">
                     {!buttonList.includes(undefined) && buttonList.length > 0 ?
-                        buttonList.map((button, index) => <ButtonImage total={buttonList.length} clicked={clicked == button.label? true : false} key={index} onClick={() => handleClick(button.label)} source={button.source} label={button.label}></ButtonImage>)
+                        buttonList.map((button, index) => <ButtonImage total={buttonList.length} clicked={clicked === button.label? true : false} key={index} onClick={() => handleClick(button.label)} source={button.source} label={button.label}></ButtonImage>)
                         :
                         ''}
                 </div>
