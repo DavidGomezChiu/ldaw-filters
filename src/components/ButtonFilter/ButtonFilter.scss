@@ -1,3 +1,5 @@
+@import '../../theme/variables/variables.scss';
+
 .title{
     font-weight: bold;
     margin: 0;
@@ -8,4 +10,33 @@
 }
 .container{
     margin-bottom: 0 !important;
+}
+.tooltip-after{
+    .filter-tooltip{
+        background-color: $main-purple;
+        text-align: center;
+        width: 15px;
+        width: 15px;
+        font-weight: bold;
+        color: white;
+        p{
+            width: inherit;
+        }
+    }
+    .tooltip-container{
+        display: none;
+        visibility: hidden;
+    }
+    &:hover{
+        .tooltip-container{
+            visibility: inherit;
+            background-color: $main-purple;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 5px;
+            position: absolute;
+            margin-top: -5px;
+        }
+    }
 }

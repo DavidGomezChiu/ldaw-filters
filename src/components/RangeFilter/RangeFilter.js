@@ -5,8 +5,8 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
 const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step, needsCleaning, onClean}) => {
-    const [range, setRange] = useState({min: 0, max: 20})
-    const [value, setValue] = useState({min: 0, max: 20})
+    const [range, setRange] = useState({min: -10000, max: 10000})
+    const [value, setValue] = useState({min: -10000, max: 10000})
     let [clean, setClean] = useState(false);
 
     useEffect(() => {
@@ -16,14 +16,11 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step
 
             setValue({min: newMin, max: newMax})
             setRange({min: newMin, max: newMax})
-            console.log(value);
-            console.log(range);
             handleChange({value: {min: newMin, max: newMax}});
         }
     },[]);
 
     useEffect(() => {
-        console.log('clean '+title);
         if(needsCleaning !== undefined){
             setClean(!needsCleaning);
             if(needsCleaning){
@@ -75,10 +72,18 @@ const RangeFilter = ({title, tooltip, from, to, imageFrom, imageTo, change, step
 
     return (
         <div>
-            <p className="title">
+            <p className="title d-inline">
                 {title ? title : ''}
             </p>
-            <div className="container">
+            <div className="d-inline-block tooltip-after">
+                <div className="d-inline-block ml-2 filter-tooltip">
+                    <p className="d-inline">?</p>
+                </div>
+                <div className="d-inline-block ml-2 tooltip-container">
+                    <p className="d-inline">{tooltip? tooltip : ''}</p>
+                </div>
+            </div>
+            <div className="container mb-3">
                 <div className="row">
                     <div className="col-6 text-left image-container">
                         {imageFrom ?
